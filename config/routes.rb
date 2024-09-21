@@ -14,6 +14,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  get 'districts', to: 'districts#index'
-
+  get "districts(/:division_id)", to: "districts#index", as: "districts"
 end

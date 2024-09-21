@@ -27,6 +27,11 @@ class PartiesController < ApplicationController
     if @party.save
       redirect_to @party, notice: 'Party was successfully created.'
     else
+      # Fetch divisions with translations in 'en'
+      @divisions = Division.joins(:translations)
+                           .where(translations: { locale: 'bn', key: 'name' })
+                           .select('divisions.*, translations.value as name')
+
       render :new
     end
   end
