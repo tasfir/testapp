@@ -1,0 +1,121 @@
+<!-- Page body -->
+<div class="page-body">
+  <div class="container-xl">
+    <div class="row row-cards">
+
+      <div class="col-lg-12">
+        <div class="row row-cards">
+          <div class="col-12">
+
+            <%= form_with(model: party, html: { class: 'card'}) do |form| %>
+
+              <div class="card-body">
+<!--                <h3 class="card-title">Edit Profile</h3>-->
+
+                <div class="row row-cards">
+
+
+
+                  <div class="col-md-6">
+                    <div class="mb-3">
+
+                      <%= form.label :division, class: 'form-label' %>
+                      <%= form.select :division_id, options_from_collection_for_select(@divisions, :id, :name), { prompt: 'Select a Division' }, { class: 'form-control form-select', id: 'division-select' } %>
+
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <%= form.label :district, class: 'form-label' %>
+                      <%= form.select :district_id, [], { prompt: 'Select a District' }, { class: 'form-control form-select', id: 'district-select' } %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
+                      <%= form.label :name, class: 'form-label' %>
+                      <%= form.text_field :name, class: "form-control", placeholder: "Name" %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
+                      <%= form.label :proprietor, class: 'form-label' %>
+                      <%= form.text_field :proprietor, class: "form-control", placeholder: true %>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <%= form.label :address, class: 'form-label' %>
+                      <%= form.text_field :address, class: "form-control", placeholder: true %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6 col-md-4">
+                    <div class="mb-3">
+                      <%= form.label :phone, class: 'form-label' %>
+                      <%= form.text_field :phone, class: "form-control", placeholder: true %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6 col-md-3">
+                    <div class="mb-3">
+                      <%= form.label :email, class: 'form-label' %>
+                      <%= form.email_field :email, class: "form-control", placeholder: true %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6 col-md-4">
+                    <div class="mb-3">
+                      <%= form.label :opening_balance, class: 'form-label' %>
+                      <%= form.number_field :opening_balance, class: "form-control", placeholder: true %>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="mb-3 mb-0">
+                      <%= form.label :remarks, class: 'form-label' %>
+                      <%= form.text_area :description, rows: 5, class: "form-control", placeholder: "Oh so, your weak rhyme You doubt I'll bother, reading into it I'll probably won't, left to my own devices But that's the difference in our opinions." %>
+<!--                      <textarea rows="5" class="form-control" placeholder="Here can be your description" value="Mike">Oh so, your weak rhyme You doubt I'll bother, reading into it I'll probably won't, left to my own devices But that's the difference in our opinions.</textarea>-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-footer text-end">
+                <%= form.submit 'Create Party', class: 'btn btn-primary' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <%# if party.errors.any? %>
+<!--    <div style="color: red">-->
+<!--      <h2><%#= pluralize(party.errors.count, "error") %> prohibited this party from being saved:</h2>-->
+
+<!--      <ul>-->
+        <%# party.errors.each do |error| %>
+<!--          <li><%#= error.full_message %></li>-->
+        <%# end %>
+<!--      </ul>-->
+<!--    </div>-->
+  <%# end %>
+
+<!--  <div>-->
+    <%#= form.label :title, style: "display: block" %>
+    <%#= form.text_field :title %>
+<!--  </div>-->
+
+<!--  <div>-->
+    <%#= form.label :description, style: "display: block" %>
+    <%#= form.text_area :description %>
+<!--  </div>-->
+
+

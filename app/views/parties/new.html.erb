@@ -1,0 +1,23 @@
+<% content_for :title, "New party" %>
+
+
+<!-- Page header -->
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <h2 class="page-title">
+          New Party
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "form", party: @party %>
+
+<br>
+
+<div>
+  <%= link_to "Back to parties", parties_path %>
+</div>

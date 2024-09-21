@@ -1,0 +1,21 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @party %>
+
+<div>
+  <%= link_to "Edit this party", edit_party_path(@party) %> |
+  <%= link_to "Back to parties", parties_path %>
+
+  <%= button_to "Destroy this party", @party, method: :delete %>
+</div>
+
+<!--<h1>Party: <%#= @party.name %></h1>-->
+<!--<p><strong>Proprietor:</strong> <%#= @party.proprietor %></p>-->
+<!--<p><strong>Phone:</strong> <%#= @party.phone %></p>-->
+<!--<p><strong>Email:</strong> <%#= @party.email %></p>-->
+<!--<p><strong>Website:</strong> <%#= @party.website %></p>-->
+<!--<p><strong>Opening Balance:</strong> <%#= @party.opening_balance %></p>-->
+<!--<p><strong>Status:</strong> <%#= @party.status %></p>-->
+
+<%#= link_to 'Edit', edit_party_path(@party) %>
+<%#= link_to 'Back to Parties', parties_path %>
