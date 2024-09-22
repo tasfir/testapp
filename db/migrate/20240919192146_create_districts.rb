@@ -81,17 +81,17 @@ class CreateDistricts < ActiveRecord::Migration[7.2]
         ]
 
         districts.each do |district|
-          div = District.find_or_create_by!(id: district[:id]) do |d|
+          dis = District.find_or_create_by!(id: district[:id]) do |d|
             d.division_id = district[:division_id]
             d.lat = district[:lat]
             d.long = district[:long]
           end
 
           # Create or update translations
-          Translation.find_or_create_by!(translatable: div, locale: 'en', key: 'name') do |t|
+          Translation.find_or_create_by!(translatable: dis, locale: 'en', key: 'name') do |t|
             t.value = district[:name]
           end
-          Translation.find_or_create_by!(translatable: div, locale: 'bn', key: 'name') do |t|
+          Translation.find_or_create_by!(translatable: dis, locale: 'bn', key: 'name') do |t|
             t.value = district[:bn_name]
           end
         end

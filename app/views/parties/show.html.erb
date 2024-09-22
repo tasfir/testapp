@@ -1,21 +1,128 @@
-<p style="color: green"><%= notice %></p>
+<!-- Page header -->
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <!-- Page pre-title -->
+        <div class="page-pretitle">Overview</div>
+        <h2 class="page-title">Parties</h2>
+      </div>
 
-<%= render @party %>
+      <!-- Page title actions -->
+      <div class="col-auto ms-auto d-print-none">
+        <div class="btn-list">
 
-<div>
-  <%= link_to "Edit this party", edit_party_path(@party) %> |
-  <%= link_to "Back to parties", parties_path %>
+          <%= link_to new_party_path, class: "btn btn-primary d-none d-sm-inline-block" do %>
+            <%= content_tag(:svg, nil, xmlns: "http://www.w3.org/2000/svg", class: "icon", width: "24", height: "24", viewBox: "0 0 24 24", "stroke-width" => "2", stroke: "currentColor", fill: "none", "stroke-linecap" => "round", "stroke-linejoin" => "round") do %>
+              <%= tag(:path, stroke: "none", d: "M0 0h24v24H0z", fill: "none") %>
+              <%= tag(:path, d: "M12 5l0 14") %>
+              <%= tag(:path, d: "M5 12l14 0") %>
+            <% end %>
+            Create new party
+          <% end %>
 
-  <%= button_to "Destroy this party", @party, method: :delete %>
+          <%= link_to new_party_path, class: "btn btn-primary d-sm-none btn-icon", data: { bs_toggle: "modal", bs_target: "#modal-report" }, aria: { label: "Create new party" } do %>
+            <%= content_tag(:svg, nil, xmlns: "http://www.w3.org/2000/svg", class: "icon", width: "24", height: "24", viewBox: "0 0 24 24", "stroke-width" => "2", stroke: "currentColor", fill: "none", "stroke-linecap" => "round", "stroke-linejoin" => "round") do %>
+              <%= tag(:path, stroke: "none", d: "M0 0h24v24H0z", fill: "none") %>
+              <%= tag(:path, d: "M12 5l0 14") %>
+              <%= tag(:path, d: "M5 12l14 0") %>
+            <% end %>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!--<h1>Party: <%#= @party.name %></h1>-->
-<!--<p><strong>Proprietor:</strong> <%#= @party.proprietor %></p>-->
-<!--<p><strong>Phone:</strong> <%#= @party.phone %></p>-->
-<!--<p><strong>Email:</strong> <%#= @party.email %></p>-->
-<!--<p><strong>Website:</strong> <%#= @party.website %></p>-->
-<!--<p><strong>Opening Balance:</strong> <%#= @party.opening_balance %></p>-->
-<!--<p><strong>Status:</strong> <%#= @party.status %></p>-->
+<!--Notification-->
+<p style="color: green"><%= notice %></p>
 
-<%#= link_to 'Edit', edit_party_path(@party) %>
-<%#= link_to 'Back to Parties', parties_path %>
+<div class="page-body">
+  <div class="container-xl">
+    <div class="row row-cards">
+
+      <div class="col-12">
+        <div class="card">
+<!--          <div class="card-header">-->
+<!--            <h3 class="card-title">Parties</h3>-->
+<!--          </div>-->
+
+          <div class="table-responsive">
+            <table class="table card-table table-vcenter text-nowrap datatable">
+
+              <tbody>
+
+              <tr>
+                <th>Name:</th>
+                <td colspan="2"><%= @party.name %></td>
+              </tr>
+
+              <tr>
+                <th>Division:</th>
+                <td colspan="2"><%= @party.division.translations %></td>
+              </tr>
+
+              <tr>
+                <th>District:</th>
+                <td colspan="2"><%= @party.name %></td>
+              </tr>
+
+              <tr>
+                <th>Thana:</th>
+                <td colspan="2"><%= @party.name %></td>
+              </tr>
+
+              <tr>
+                <th>Proprietor:</th>
+                <td colspan="2"><%= @party.proprietor %></td>
+              </tr>
+
+              <tr>
+                <th>Address:</th>
+                <td colspan="2"><%= @party.address %></td>
+              </tr>
+
+              <tr>
+                <th>Email:</th>
+                <td colspan="2"><%= @party.email %></td>
+              </tr>
+
+              <tr>
+                <th>Phone:</th>
+                <td colspan="2"><%= @party.phone %></td>
+              </tr>
+
+              <tr>
+                <th>Opening balance:</th>
+                <td colspan="2"><%= @party.phone %></td>
+              </tr>
+
+              <tr>
+                <th>Remarks:</th>
+                <td colspan="2"><%= @party.remarks %></td>
+              </tr>
+
+              </tbody>
+              <tfoot>
+              <td><%= link_to "Back to parties", parties_path %></td>
+              <td><%= link_to "Edit this party", edit_party_path(@party) %></td>
+              <td><%= button_to "Destroy this party", @party, method: :delete %></td>
+              </tfoot>
+            </table>
+          </div>
+
+
+        </div>
+
+<!--        <div class="row">-->
+<!--          <div class="col-md-4"><%#= link_to "Back to parties", parties_path %></div>-->
+<!--          <div class="col-md-4"><%#= link_to "Edit this party", edit_party_path(@party) %></div>-->
+<!--          <div class="col-md-4"><%#= button_to "Destroy this party", @party, method: :delete %></div>-->
+<!--        </div>-->
+
+      </div>
+
+    </div>
+  </div>
+</div>

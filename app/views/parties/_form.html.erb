@@ -38,7 +38,7 @@
                   <div class="col-md-6">
                     <div class="mb-3">
                       <%= form.label :thana, class: 'form-label' %>
-                      <%= form.select :thana_id, [], { prompt: 'Select a Thana' }, { class: 'form-control form-select', id: 'thana-select' } %>
+                      <%= form.select :thana_id, options_from_collection_for_select(@thanas, :id, :name), { prompt: 'Select a Thana' }, { class: 'form-control form-select', id: 'thana-select' } %>
                     </div>
                   </div>
 
@@ -65,15 +65,15 @@
 
                   <div class="col-sm-6 col-md-4">
                     <div class="mb-3">
-                      <%= form.label :phone, class: 'form-label' %>
-                      <%= form.text_field :phone, class: "form-control", placeholder: true %>
+                      <%= form.label :email, class: 'form-label' %>
+                      <%= form.email_field :email, class: "form-control", placeholder: true %>
                     </div>
                   </div>
 
-                  <div class="col-sm-6 col-md-3">
+                  <div class="col-sm-6 col-md-4">
                     <div class="mb-3">
-                      <%= form.label :email, class: 'form-label' %>
-                      <%= form.email_field :email, class: "form-control", placeholder: true %>
+                      <%= form.label :phone, class: 'form-label' %>
+                      <%= form.text_field :phone, class: "form-control", placeholder: true %>
                     </div>
                   </div>
 
@@ -87,7 +87,7 @@
                   <div class="col-md-12">
                     <div class="mb-3 mb-0">
                       <%= form.label :remarks, class: 'form-label' %>
-                      <%= form.text_area :remarks, rows: 5, class: "form-control", placeholder: "Oh so, your weak rhyme You doubt I'll bother, reading into it I'll probably won't, left to my own devices But that's the difference in our opinions." %>
+                      <%= form.text_area :remarks, rows: 3, class: "form-control", placeholder: "Oh so, your weak rhyme You doubt I'll bother, reading into it I'll probably won't, left to my own devices But that's the difference in our opinions." %>
                     </div>
                   </div>
 

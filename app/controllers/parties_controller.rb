@@ -18,6 +18,7 @@ class PartiesController < ApplicationController
     @districts = District.joins(:translations)
                          .where(translations: { locale: "bn", key: "name" })
                          .select("districts.*, translations.value as name")
+    @thanas = []
   end
 
 
@@ -48,6 +49,16 @@ class PartiesController < ApplicationController
 
   # GET /parties/:id/edit
   def edit
+    # Fetch divisions with translations in 'en'
+    @districts = District.joins(:translations)
+                         .where(translations: { locale: "bn", key: "name" })
+                         .select("districts.*, translations.value as name")
+
+    @thanas = Thana.joins(:translations)
+                         .where(district_id: @party.district_id)
+                         .where(translations: { locale: "bn", key: "name" })
+                         .select("thanas.*, translations.value as name")
+
   end
 
   # PATCH/PUT /parties/:id

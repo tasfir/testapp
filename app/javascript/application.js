@@ -4,5 +4,4 @@ import "./controllers"
 import "./dependent/districts";
 import "./dependent/thana";
 import "./tabler/tabler";
-import "./tabler/tabler.esm";
 

@@ -17,7 +17,7 @@ document.addEventListener("turbo:load", () => {
                 .then(data => {
                     // Clear the thana select options and add the new ones
                     thanaSelect.innerHTML = '';
-                    thanaSelect.insertAdjacentHTML('beforeend', '<option value="">Select a District</option>');
+                    thanaSelect.insertAdjacentHTML('beforeend', '<option value="">Select a Thana</option>');
 
                     data.forEach(thana => {
                         const option = document.createElement('option');
