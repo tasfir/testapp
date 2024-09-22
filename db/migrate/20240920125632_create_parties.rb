@@ -11,7 +11,9 @@ class CreateParties < ActiveRecord::Migration[7.2]
       t.string :phone
       t.string :email
       t.string :website
-      t.decimal :opening_balance, precision: 10, scale: 2  # changed to decimal
+      t.decimal :opening_balance, precision: 10, scale: 2  # changed to
+
+      t.text :remarks
 
       t.timestamps
       t.string :status, null: false, default: 'published' # Use a string for the default value

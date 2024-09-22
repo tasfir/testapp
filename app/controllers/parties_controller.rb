@@ -15,22 +15,32 @@ class PartiesController < ApplicationController
     @party = Party.new
 
     # Fetch divisions with translations in 'en'
-    @divisions = Division.joins(:translations)
-                         .where(translations: { locale: 'bn', key: 'name' })
-                         .select('divisions.*, translations.value as name')
+    @districts = District.joins(:translations)
+                         .where(translations: { locale: "bn", key: "name" })
+                         .select("districts.*, translations.value as name")
   end
 
 
   # POST /parties
   def create
-    @party = Party.new(party_params)
+
+    # Fetch the district using the provided district_id
+    district = District.find(params[:party][:district_id])
+
+    # If the district is found, get the thana_id
+    division_id = district.division_id if district
+
+    # Create the party with the thana_id
+    @party = Party.new(party_params.merge(division_id: division_id))
+
+    # @party = Party.new(party_params)
     if @party.save
-      redirect_to @party, notice: 'Party was successfully created.'
+      redirect_to @party, notice: "Party was successfully created."
     else
       # Fetch divisions with translations in 'en'
       @divisions = Division.joins(:translations)
-                           .where(translations: { locale: 'bn', key: 'name' })
-                           .select('divisions.*, translations.value as name')
+                           .where(translations: { locale: "bn", key: "name" })
+                           .select("divisions.*, translations.value as name")
 
       render :new
     end
@@ -43,7 +53,7 @@ class PartiesController < ApplicationController
   # PATCH/PUT /parties/:id
   def update
     if @party.update(party_params)
-      redirect_to @party, notice: 'Party was successfully updated.'
+      redirect_to @party, notice: "Party was successfully updated."
     else
       render :edit
     end
@@ -52,7 +62,7 @@ class PartiesController < ApplicationController
   # DELETE /parties/:id
   def destroy
     @party.destroy
-    redirect_to parties_url, notice: 'Party was successfully destroyed.'
+    redirect_to parties_url, notice: "Party was successfully destroyed."
   end
 
   private
@@ -64,6 +74,6 @@ class PartiesController < ApplicationController
 
   # Only allow a list of trusted parameters through
   def party_params
-    params.require(:party).permit(:division_id, :district_id, :thana_id, :name, :proprietor, :address, :phone, :email, :website, :opening_balance, :status)
+    params.require(:party).permit(:division_id, :district_id, :thana_id, :name, :proprietor, :address, :phone, :email, :website, :opening_balance, :remarks, :status)
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_20_125632) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_21_125450) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,7 +44,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_20_125632) do
     t.string "phone"
     t.string "email"
     t.string "website"
-    t.string "opening_balance"
+    t.decimal "opening_balance", precision: 10, scale: 2
+    t.text "remarks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status", default: "published", null: false
@@ -99,6 +100,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_20_125632) do
     t.index ["sku"], name: "index_products_on_sku", unique: true
     t.index ["start_date"], name: "index_products_on_start_date"
     t.index ["status"], name: "index_products_on_status"
+  end
+
+  create_table "publications", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "thanas", force: :cascade do |t|

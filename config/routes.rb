@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :publications
   resources :parties
   resources :products
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -15,4 +16,5 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   get "districts(/:division_id)", to: "districts#index", as: "districts"
+  get "thanas(/:district_id)", to: "thanas#index", as: "thanas"
 end

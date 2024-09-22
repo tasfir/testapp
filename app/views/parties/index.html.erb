@@ -1,17 +1,5 @@
-<%# content_for :title, "parties" %>
+<% content_for :name, "parties" %>
 
-<!--<h1>parties</h1>-->
-
-<!--<div id="parties">-->
-  <%# @parties.each do |party| %>
-    <%#= render party %>
-<!--    <p>-->
-      <%#= link_to "Show this party", party %>
-<!--    </p>-->
-  <%# end %>
-<!--</div>-->
-
-<%#= link_to "New party", new_party_path %>
 
 <!-- Page header -->
 <div class="page-header d-print-none">
@@ -20,7 +8,7 @@
       <div class="col">
         <!-- Page pre-title -->
         <div class="page-pretitle">Overview</div>
-        <h2 class="page-title">parties</h2>
+        <h2 class="page-title">Parties</h2>
       </div>
 
       <!-- Page title actions -->
@@ -33,10 +21,10 @@
               <%= tag(:path, d: "M12 5l0 14") %>
               <%= tag(:path, d: "M5 12l14 0") %>
             <% end %>
-            Create new report
+            Create new party
           <% end %>
 
-          <%= link_to new_party_path, class: "btn btn-primary d-sm-none btn-icon", data: { bs_toggle: "modal", bs_target: "#modal-report" }, aria: { label: "Create new report" } do %>
+          <%= link_to new_party_path, class: "btn btn-primary d-sm-none btn-icon", data: { bs_toggle: "modal", bs_target: "#modal-report" }, aria: { label: "Create new party" } do %>
             <%= content_tag(:svg, nil, xmlns: "http://www.w3.org/2000/svg", class: "icon", width: "24", height: "24", viewBox: "0 0 24 24", "stroke-width" => "2", stroke: "currentColor", fill: "none", "stroke-linecap" => "round", "stroke-linejoin" => "round") do %>
               <%= tag(:path, stroke: "none", d: "M0 0h24v24H0z", fill: "none") %>
               <%= tag(:path, d: "M12 5l0 14") %>
@@ -61,7 +49,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Invoices</h3>
+            <h3 class="card-title">Parties</h3>
           </div>
 
           <div class="card-body border-bottom py-3">
@@ -69,7 +57,7 @@
               <div class="text-secondary">
                 Show
                 <div class="mx-2 d-inline-block">
-                  <input type="text" class="form-control form-control-sm" value="8" size="3" aria-label="Invoices count">
+                  <input type="text" class="form-control form-control-sm" value="8" size="3" aria-label="Parties count">
                 </div>
                 entries
               </div>
@@ -90,24 +78,13 @@
                 <th class="w-1">
                   <input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select all invoices">
                 </th>
-                <th>ID</th>
-                <th class="w-1">No.
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-sm icon-thick" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M6 15l6 -6l6 6"/>
-                  </svg>
-                </th>
-                <th>Image</th>
-                <th>parties</th>
-                <th>Price</th>
-                <th>Stock status</th>
-                <th>Quantity</th>
-                <th>SKU</th>
-                <th>Order</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>O.P Balance</th>
                 <th>Created At</th>
                 <th>Status</th>
-                <th>Store</th>
-<!--                <th>English flagEnglish flag</th>-->
+                <!--                <th>English flagEnglish flag</th>-->
                 <th>Operations</th>
               </tr>
 
@@ -120,63 +97,34 @@
                 <%#= render party %>
 
 
-              <tr>
-                <td><input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice"></td>
-                <td>23</td>
-                <td><span class="text-secondary">001401</span></td>
-                <td>
-                  <%#= link_to party.title, "/parties/watch.jpg", target: "_blank" %>
-                  <%#= link_to party_path("/parties/watch.jpg") do %>
-                    <%#= image_tag "/parties/watch.jpg", alt: "Watch" %>
-                  <%# end %>
+                <tr>
+                  <td><input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice"></td>
+                  <td><%= party.name %></td>
+                  <td><%= party.phone %></td>
+                  <td><%= party.email %></td>
+                  <td><%= party.opening_balance %></td>
+                  <td>
+                    <%= party.created_at.strftime("%d %b %Y") %><br>
+                    <%= party.created_at.strftime("%I:%M:%S %p") %>
+                  </td>
+                  <td>
+                    <%= party.status %>
+                  </td>
 
-                  <%#= link_to image_tag("/parties/watch.jpg", alt: "Watch"), "/parties/watch.jpg", target: "_blank" %>
-                  <%= link_to image_tag("/parties/watch.jpg", alt: "Watch", class: "img-fluid", style: "height: 40px; width: 40px;"), "/parties/watch.jpg", target: "_blank" %>
-
-
-                </td>
-
-                <td><%= link_to party.title %></td>
-                <td>
-                  <span class="flag flag-xs flag-country-us me-2"></span>
-                  Carlson Limited
-                </td>
-                <td>
-                  87956621
-                </td>
-                <td>
-                  15
-                </td>
-                <td>
-                  <span class="badge bg-success me-1"></span> Paid
-                </td>
-                <td>$887</td>
-                <td>
-                  <%= party.created_at.strftime("%d %b %Y") %><br>
-                  <%= party.created_at.strftime("%I:%M:%S %p") %>
-
-                </td>
-                <td>
-                  Active
-                </td>
-
-                <td>
-                  Global Store
-                </td>
-                <td class="text-end">
-                    <span class="dropdown">
-                      <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
-                      <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" href="#">
-                          Action
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Another action
-                        </a>
-                      </div>
-                    </span>
-                </td>
-              </tr>
+                  <td class="text-end">
+                            <span class="dropdown">
+                              <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
+                              <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="#">
+                                  Action
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                  Another action
+                                </a>
+                              </div>
+                            </span>
+                  </td>
+                </tr>
 
               <% end %>
 

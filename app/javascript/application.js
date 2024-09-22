@@ -1,5 +1,8 @@
 // Entry point for the build script in your package.json
 import "@hotwired/turbo-rails"
 import "./controllers"
-import "./districts";
+import "./dependent/districts";
+import "./dependent/thana";
+import "./tabler/tabler";
+import "./tabler/tabler.esm";
 
