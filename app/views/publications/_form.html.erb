@@ -11,7 +11,10 @@
     </div>
   <% end %>
 
+  <p>Test</p>
+
+
   <div>
-    <%= form.submit %>
+    <%= form.submit @publication.new_record? ? 'Edit Publication' : 'Create New Publication' %>
   </div>
 <% end %>

@@ -1,12 +1,17 @@
-<% content_for :title, "Editing party" %>
+<% content_for :title, "New party" %>
 
-<h1>Editing party</h1>
 
-<%= render "form", party: @party %>
-
-<br>
-
-<div>
-  <%= link_to "Show this party", @party %> |
-  <%= link_to "Back to parties", parties_path %>
+<!-- Page header -->
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <h2 class="page-title">
+          New Party
+        </h2>
+      </div>
+    </div>
+  </div>
 </div>
+
+<%= render 'form', party: @party %>

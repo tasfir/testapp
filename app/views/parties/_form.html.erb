@@ -94,8 +94,24 @@
                 </div>
               </div>
 
-              <div class="card-footer text-end">
-                <%= form.submit 'Create Party', class: 'btn btn-primary' %>
+              <div class="card-footer">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="text-left">
+                      <%= link_to "Show this party", @party %>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="text-center">
+                      <%= link_to "Back to parties", parties_path %>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="text-end"><%= form.submit @party.new_record? ? 'Create Party' : 'Edit Party', class: 'btn btn-primary' %></div></div>
+                </div>
+
               </div>
             <% end %>
           </div>
