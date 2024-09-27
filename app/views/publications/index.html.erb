@@ -1,16 +1,183 @@
-<p style="color: green"><%= notice %></p>
+<!--<p style="color: green"><%#= notice %></p>-->
 
-<% content_for :title, "Publications" %>
+<%# content_for :title, "Publications" %>
 
-<h1>Publications</h1>
+<!--<h1>Publications</h1>-->
 
-<div id="publications">
-  <% @publications.each do |publication| %>
-    <%= render publication %>
-    <p>
-      <%= link_to "Show this publication", publication %>
-    </p>
-  <% end %>
+<!--<div id="publications">-->
+  <%# @publications.each do |publication| %>
+    <%#= render publication %>
+<!--    <p>-->
+      <%#= link_to "Show this publication", publication %>
+<!--    </p>-->
+  <%# end %>
+<!--</div>-->
+
+<%#= link_to "New publication", new_publication_path %>
+
+<%# content_for :name, "publications" %>
+
+
+<!-- Page header -->
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <!-- Page pre-title -->
+        <div class="page-pretitle">Overview</div>
+        <h2 class="page-title">Publications</h2>
+      </div>
+
+      <!-- Page title actions -->
+      <div class="col-auto ms-auto d-print-none">
+        <div class="btn-list">
+
+          <%= link_to new_publication_path, class: "btn btn-primary d-none d-sm-inline-block" do %>
+            <%= content_tag(:svg, nil, xmlns: "http://www.w3.org/2000/svg", class: "icon", width: "24", height: "24", viewBox: "0 0 24 24", "stroke-width" => "2", stroke: "currentColor", fill: "none", "stroke-linecap" => "round", "stroke-linejoin" => "round") do %>
+              <%= tag(:path, stroke: "none", d: "M0 0h24v24H0z", fill: "none") %>
+              <%= tag(:path, d: "M12 5l0 14") %>
+              <%= tag(:path, d: "M5 12l14 0") %>
+            <% end %>
+            Create new publication
+          <% end %>
+
+          <%= link_to new_publication_path, class: "btn btn-primary d-sm-none btn-icon", data: { bs_toggle: "modal", bs_target: "#modal-report" }, aria: { label: "Create new publication" } do %>
+            <%= content_tag(:svg, nil, xmlns: "http://www.w3.org/2000/svg", class: "icon", width: "24", height: "24", viewBox: "0 0 24 24", "stroke-width" => "2", stroke: "currentColor", fill: "none", "stroke-linecap" => "round", "stroke-linejoin" => "round") do %>
+              <%= tag(:path, stroke: "none", d: "M0 0h24v24H0z", fill: "none") %>
+              <%= tag(:path, d: "M12 5l0 14") %>
+              <%= tag(:path, d: "M5 12l14 0") %>
+            <% end %>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<%= link_to "New publication", new_publication_path %>
+<div class="page-body">
+  <div class="container-xl">
+    <div class="row row-cards">
+
+      <!--Notification-->
+      <p style="color: green"><%= notice %></p>
+
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Publications</h3>
+          </div>
+
+          <div class="card-body border-bottom py-3">
+            <div class="d-flex">
+              <div class="text-secondary">
+                Show
+                <div class="mx-2 d-inline-block">
+                  <input type="text" class="form-control form-control-sm" value="8" size="3" aria-label="Publications count">
+                </div>
+                entries
+              </div>
+
+              <div class="ms-auto text-secondary">
+                Search:
+                <div class="ms-2 d-inline-block">
+                  <input type="text" class="form-control form-control-sm" aria-label="Search invoice">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table card-table table-vcenter text-nowrap datatable">
+              <thead>
+              <tr>
+                <th class="w-1">
+                  <input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select all invoices">
+                </th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>O.P Balance</th>
+                <th>Created At</th>
+                <th>Status</th>
+              </tr>
+
+
+              </thead>
+              <tbody>
+
+              <% @publications.each do |publication| %>
+
+                <%#= render publication %>
+
+
+                <tr>
+                  <td><input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice"></td>
+                  <td><%= publication.name %></td>
+                  <td><%= publication.address %></td>
+                  <td><%= publication.opening_balance %></td>
+                  <td>
+                    <%= publication.created_at.strftime("%d %b %Y") %><br>
+                    <%= publication.created_at.strftime("%I:%M:%S %p") %>
+                  </td>
+                  <td>
+                    <%= publication.status %>
+                  </td>
+
+                  <td class="text-end">
+                    <div class="dropdown">
+                      <%= button_tag 'Actions', class: 'btn dropdown-toggle align-text-bottom',
+                                     data: { bs_boundary: 'viewport', bs_toggle: 'dropdown' },
+                                     aria: { expanded: false } %>
+
+                      <ul class="dropdown-menu">
+                        <li><%= link_to 'View', publication_path(publication), class: 'dropdown-item' %></li>
+                        <li><%= link_to 'Edit', edit_publication_path(publication), class: 'dropdown-item' %></li>
+                        <li>
+                          <%= link_to 'Delete', publication_path(publication), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'dropdown-item' %>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+
+              <% end %>
+
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card-footer d-flex align-items-center">
+            <p class="m-0 text-secondary">Showing <span>1</span> to <span>8</span> of <span>16</span> entries</p>
+            <ul class="pagination m-0 ms-auto">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                  <!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M15 6l-6 6l6 6"/>
+                  </svg>
+                  prev
+                </a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item active"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">4</a></li>
+              <li class="page-item"><a class="page-link" href="#">5</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">
+                  next <!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M9 6l6 6l-6 6"/>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

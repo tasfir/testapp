@@ -1,10 +1,94 @@
-<p style="color: green"><%= notice %></p>
+<!-- Page header -->
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <!-- Page pre-title -->
+        <div class="page-pretitle">Overview</div>
+        <h2 class="page-title">Parties</h2>
+      </div>
 
-<%= render @publication %>
+      <!-- Page title actions -->
+      <div class="col-auto ms-auto d-print-none">
+        <div class="btn-list">
 
-<div>
-  <%= link_to "Edit this publication", edit_publication_path(@publication) %> |
-  <%= link_to "Back to publications", publications_path %>
+          <%= link_to new_publication_path, class: "btn btn-primary d-none d-sm-inline-block" do %>
+            <%= content_tag(:svg, nil, xmlns: "http://www.w3.org/2000/svg", class: "icon", width: "24", height: "24", viewBox: "0 0 24 24", "stroke-width" => "2", stroke: "currentColor", fill: "none", "stroke-linecap" => "round", "stroke-linejoin" => "round") do %>
+              <%= tag(:path, stroke: "none", d: "M0 0h24v24H0z", fill: "none") %>
+              <%= tag(:path, d: "M12 5l0 14") %>
+              <%= tag(:path, d: "M5 12l14 0") %>
+            <% end %>
+            Create new publication
+          <% end %>
 
-  <%= button_to "Destroy this publication", @publication, method: :delete %>
+          <%= link_to new_publication_path, class: "btn btn-primary d-sm-none btn-icon", data: { bs_toggle: "modal", bs_target: "#modal-report" }, aria: { label: "Create new publication" } do %>
+            <%= content_tag(:svg, nil, xmlns: "http://www.w3.org/2000/svg", class: "icon", width: "24", height: "24", viewBox: "0 0 24 24", "stroke-width" => "2", stroke: "currentColor", fill: "none", "stroke-linecap" => "round", "stroke-linejoin" => "round") do %>
+              <%= tag(:path, stroke: "none", d: "M0 0h24v24H0z", fill: "none") %>
+              <%= tag(:path, d: "M12 5l0 14") %>
+              <%= tag(:path, d: "M5 12l14 0") %>
+            <% end %>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="page-body">
+  <div class="container-xl">
+    <div class="row row-cards">
+
+      <!--Notification-->
+      <p style="color: green"><%= notice %></p>
+
+      <div class="col-12">
+        <div class="card">
+          <!--          <div class="card-header">-->
+          <!--            <h3 class="card-title">Parties</h3>-->
+          <!--          </div>-->
+
+          <div class="table-responsive">
+            <table class="table card-table table-vcenter text-nowrap datatable">
+
+              <tbody>
+
+              <tr>
+                <th>Name:</th>
+                <td colspan="2"><%= @publication.name %></td>
+              </tr>
+
+              <tr>
+                <th>Address:</th>
+                <td colspan="2"><%= @publication.address %></td>
+              </tr>
+
+              <tr>
+                <th>Opening Balance:</th>
+                <td colspan="2"><%= @publication.opening_balance %></td>
+              </tr>
+
+              </tbody>
+              <tfoot>
+              <td><%= link_to "Back to publications", publications_path %></td>
+              <td><%= link_to "Edit this publication", edit_publication_path(@publication) %></td>
+              <td><%= button_to "Destroy this publication", @publication, method: :delete %></td>
+              </tfoot>
+            </table>
+          </div>
+
+
+        </div>
+
+        <!--        <div class="row">-->
+        <!--          <div class="col-md-4"><%#= link_to "Back to publications", publications_path %></div>-->
+        <!--          <div class="col-md-4"><%#= link_to "Edit this publication", edit_publication_path(@publication) %></div>-->
+        <!--          <div class="col-md-4"><%#= button_to "Destroy this publication", @publication, method: :delete %></div>-->
+        <!--        </div>-->
+
+      </div>
+
+    </div>
+  </div>
 </div>
