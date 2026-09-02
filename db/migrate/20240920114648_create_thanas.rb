@@ -34,18 +34,17 @@ class CreateThanas < ActiveRecord::Migration[7.0]
         # end
 
         thanas.each do |thana|
-          thana = Thana.create(district_id: thana['district_id'], lat: thana['lat'], long: thana['long'])
-          thana.debugger
+          thana_record = Thana.create(district_id: thana['district_id'], lat: thana['lat'], long: thana['long'])
 
           Translation.create(
-            translatable: thana,
+            translatable: thana_record,
             locale: 'en',
             key: 'name',
             value: thana['name']
           )
 
           Translation.create(
-            translatable: thana,
+            translatable: thana_record,
             locale: 'bn',
             key: 'name',
             value: thana['bn_name']

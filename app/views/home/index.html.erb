@@ -1,0 +1,231 @@
+<% content_for :title, "Dashboard" %>
+
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div class="page-pretitle">Overview</div>
+        <h2 class="page-title">Dashboard</h2>
+      </div>
+      <div class="col-auto ms-auto d-print-none">
+        <div class="btn-list">
+          <%= link_to "New product", new_product_path, class: "btn btn-primary d-none d-sm-inline-block" %>
+          <%= link_to new_product_path, class: "btn btn-primary d-sm-none btn-icon", aria: { label: "New product" } do %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M12 5l0 14"/>
+              <path d="M5 12l14 0"/>
+            </svg>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="container-xl">
+
+    <div class="row row-deck row-cards mb-3">
+      <div class="col-sm-6 col-lg-3">
+        <div class="card card-sm">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <span class="bg-primary text-white avatar">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5"/>
+                    <path d="M12 12l8 -4.5"/>
+                    <path d="M12 12l0 9"/>
+                    <path d="M12 12l-8 -4.5"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="col">
+                <div class="font-weight-medium"><%= @products_count %></div>
+                <div class="text-secondary"><%= link_to "Products", products_path, class: "text-reset" %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="card card-sm">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <span class="bg-green text-white avatar">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M5 12l5 5l10 -10"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="col">
+                <div class="font-weight-medium"><%= @published_products_count %></div>
+                <div class="text-secondary">Published</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="card card-sm">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <span class="bg-red text-white avatar">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M12 9v4"/>
+                    <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.871l-8.106 -13.534a1.914 1.914 0 0 0 -3.274 0z"/>
+                    <path d="M12 16h.01"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="col">
+                <div class="font-weight-medium"><%= @out_of_stock_count %></div>
+                <div class="text-secondary">Out of stock</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="card card-sm">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <span class="bg-azure text-white avatar">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"/>
+                    <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="col">
+                <div class="font-weight-medium"><%= @parties_count %></div>
+                <div class="text-secondary"><%= link_to "Parties", parties_path, class: "text-reset" %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row row-deck row-cards mb-3">
+      <div class="col-sm-6 col-lg-4">
+        <div class="card card-sm">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col">
+                <div class="font-weight-medium"><%= @groups_count %></div>
+                <div class="text-secondary"><%= link_to "Groups", groups_path, class: "text-reset" %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="card card-sm">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col">
+                <div class="font-weight-medium"><%= @publications_count %></div>
+                <div class="text-secondary"><%= link_to "Publications", publications_path, class: "text-reset" %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% if @low_stock_products.any? %>
+      <div class="row row-cards mb-3">
+        <div class="col-12">
+          <div class="alert alert-warning" role="alert">
+            <div class="d-flex">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M12 9v4"/>
+                  <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.871l-8.106 -13.534a1.914 1.914 0 0 0 -3.274 0z"/>
+                  <path d="M12 16h.01"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="alert-title">Low stock</h4>
+                <div class="text-secondary">
+                  <%= @low_stock_products.map { |p| "#{p.name} (#{p.quantity} left)" }.join(", ") %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="row row-cards">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Recently added products</h3>
+            <div class="card-actions">
+              <%= link_to "View all", products_path, class: "btn btn-outline-primary btn-sm" %>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table card-table table-vcenter text-nowrap">
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>SKU</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th>Added</th>
+                <th class="w-1"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% if @recent_products.any? %>
+                <% @recent_products.each do |product| %>
+                  <tr>
+                    <td><%= link_to product.name, product %></td>
+                    <td><span class="text-secondary"><%= product.sku %></span></td>
+                    <td><%= number_to_currency(product.price) if product.price %></td>
+                    <td><%= product.quantity %></td>
+                    <td>
+                      <span class="badge <%= product.status == Statusable::STATUS_PUBLISHED ? 'bg-green-lt' : 'bg-secondary-lt' %>">
+                        <%= product.status %>
+                      </span>
+                    </td>
+                    <td><%= product.created_at.strftime("%d %b %Y") %></td>
+                    <td class="text-end">
+                      <%= link_to "Edit", edit_product_path(product), class: "btn btn-outline-primary btn-sm" %>
+                    </td>
+                  </tr>
+                <% end %>
+              <% else %>
+                <tr>
+                  <td colspan="7" class="text-center text-secondary py-4">
+                    No products yet. <%= link_to "Add your first product", new_product_path %>.
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

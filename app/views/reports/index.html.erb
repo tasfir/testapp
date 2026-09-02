@@ -1,0 +1,122 @@
+<% content_for :title, "Reports" %>
+
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div class="page-pretitle">Overview</div>
+        <h2 class="page-title">Reports</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="container-xl">
+
+    <div class="row row-cards mb-3">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Inventory summary</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table card-table table-vcenter">
+              <tbody>
+              <tr>
+                <th>Total products</th>
+                <td><%= @products_count %></td>
+              </tr>
+              <tr>
+                <th>Published products</th>
+                <td><%= @published_products_count %></td>
+              </tr>
+              <tr>
+                <th>Total units in stock</th>
+                <td><%= @total_quantity %></td>
+              </tr>
+              <tr>
+                <th>Total stock value</th>
+                <td><%= number_to_currency(@total_stock_value) %></td>
+              </tr>
+              <tr>
+                <th>Out of stock products</th>
+                <td><%= @out_of_stock_count %></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row row-cards mb-3">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Products by brand</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table card-table table-vcenter">
+              <thead>
+              <tr>
+                <th>Brand</th>
+                <th>Products</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @products_by_brand.each do |brand_name, count| %>
+                <tr>
+                  <td><%= brand_name %></td>
+                  <td><%= count %></td>
+                </tr>
+              <% end %>
+              <tr>
+                <td class="text-secondary">No brand assigned</td>
+                <td><%= @products_without_brand %></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row row-cards">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Business overview</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table card-table table-vcenter">
+              <tbody>
+              <tr>
+                <th>Parties</th>
+                <td><%= @parties_count %></td>
+              </tr>
+              <tr>
+                <th>Parties opening balance (total)</th>
+                <td><%= number_to_currency(@parties_opening_balance) %></td>
+              </tr>
+              <tr>
+                <th>Publications</th>
+                <td><%= @publications_count %></td>
+              </tr>
+              <tr>
+                <th>Publications opening balance (total)</th>
+                <td><%= number_to_currency(@publications_opening_balance) %></td>
+              </tr>
+              <tr>
+                <th>Groups</th>
+                <td><%= @groups_count %></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

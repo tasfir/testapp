@@ -1,0 +1,101 @@
+<% content_for :title, "Brands" %>
+
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div class="page-pretitle">Products</div>
+        <h2 class="page-title">Brands</h2>
+      </div>
+
+      <div class="col-auto ms-auto d-print-none">
+        <div class="btn-list">
+          <%= link_to new_brand_path, class: "btn btn-primary d-none d-sm-inline-block" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M12 5l0 14"/>
+              <path d="M5 12l14 0"/>
+            </svg>
+            New brand
+          <% end %>
+
+          <%= link_to new_brand_path, class: "btn btn-primary d-sm-none btn-icon", aria: { label: "New brand" } do %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M12 5l0 14"/>
+              <path d="M5 12l14 0"/>
+            </svg>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="container-xl">
+    <div class="row row-cards">
+
+      <p style="color: green"><%= notice %></p>
+
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Brands</h3>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table card-table table-vcenter text-nowrap">
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Products</th>
+                <th>Status</th>
+                <th>Created At</th>
+                <th class="w-1"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% if @brands.any? %>
+                <% @brands.each do |brand| %>
+                  <tr>
+                    <td><%= link_to brand.name, brand %></td>
+                    <td><%= brand.products.count %></td>
+                    <td>
+                      <span class="badge <%= brand.status == 'published' ? 'bg-green-lt' : 'bg-secondary-lt' %>">
+                        <%= brand.status %>
+                      </span>
+                    </td>
+                    <td><%= brand.created_at.strftime("%d %b %Y") %></td>
+                    <td class="text-end">
+                      <div class="dropdown">
+                        <%= button_tag "Actions", class: "btn dropdown-toggle align-text-bottom",
+                                       data: { bs_boundary: "viewport", bs_toggle: "dropdown" },
+                                       aria: { expanded: false } %>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                          <li><%= link_to "View", brand_path(brand), class: "dropdown-item" %></li>
+                          <li><%= link_to "Edit", edit_brand_path(brand), class: "dropdown-item" %></li>
+                          <li>
+                            <%= link_to "Delete", brand_path(brand), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "dropdown-item text-danger" %>
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
+              <% else %>
+                <tr>
+                  <td colspan="5" class="text-center text-secondary py-4">
+                    No brands yet. <%= link_to "Add your first brand", new_brand_path %>.
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

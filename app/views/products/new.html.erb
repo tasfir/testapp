@@ -1,11 +1,14 @@
 <% content_for :title, "New product" %>
 
-<h1>New product</h1>
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div class="page-pretitle">Products</div>
+        <h2 class="page-title">New product</h2>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= render "form", product: @product %>
-
-<br>
-
-<div>
-  <%= link_to "Back to products", products_path %>
-</div>

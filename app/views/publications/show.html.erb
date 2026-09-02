@@ -5,7 +5,7 @@
       <div class="col">
         <!-- Page pre-title -->
         <div class="page-pretitle">Overview</div>
-        <h2 class="page-title">Parties</h2>
+        <h2 class="page-title">Publications</h2>
       </div>
 
       <!-- Page title actions -->
@@ -66,7 +66,7 @@
 
               <tr>
                 <th>Opening Balance:</th>
-                <td colspan="2"><%= @publication.opening_balance %></td>
+                <td colspan="2"><%= number_to_currency(@publication.opening_balance) if @publication.opening_balance %></td>
               </tr>
 
               </tbody>

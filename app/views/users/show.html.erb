@@ -1,0 +1,64 @@
+<% content_for :title, @user.name.presence || @user.email %>
+
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div class="page-pretitle">Users</div>
+        <h2 class="page-title"><%= @user.name.presence || @user.email %></h2>
+      </div>
+      <div class="col-auto ms-auto d-print-none">
+        <div class="btn-list">
+          <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary" %>
+          <% unless @user == current_user %>
+            <%= button_to "Delete", @user, method: :delete, class: "btn btn-outline-danger", form: { data: { turbo_confirm: "Are you sure?" } } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="container-xl">
+    <div class="row row-cards">
+
+      <p style="color: green"><%= notice %></p>
+
+      <div class="col-12">
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table card-table table-vcenter text-nowrap">
+              <tbody>
+              <tr>
+                <th>Name:</th>
+                <td colspan="2"><%= @user.name %></td>
+              </tr>
+              <tr>
+                <th>Email:</th>
+                <td colspan="2"><%= @user.email %></td>
+              </tr>
+              <tr>
+                <th>Joined:</th>
+                <td colspan="2"><%= @user.created_at.strftime("%d %b %Y, %I:%M %p") %></td>
+              </tr>
+              </tbody>
+              <tfoot>
+              <tr>
+                <td><%= link_to "Back to users", users_path %></td>
+                <td><%= link_to "Edit this user", edit_user_path(@user) %></td>
+                <td>
+                  <% unless @user == current_user %>
+                    <%= button_to "Delete this user", @user, method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
+                  <% end %>
+                </td>
+              </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

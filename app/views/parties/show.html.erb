@@ -62,17 +62,17 @@
 
               <tr>
                 <th>Division:</th>
-                <td colspan="2"><%= @party.division.translations %></td>
+                <td colspan="2"><%= @party.division.name %></td>
               </tr>
 
               <tr>
                 <th>District:</th>
-                <td colspan="2"><%= @party.name %></td>
+                <td colspan="2"><%= @party.district.name %></td>
               </tr>
 
               <tr>
                 <th>Thana:</th>
-                <td colspan="2"><%= @party.name %></td>
+                <td colspan="2"><%= @party.thana.name %></td>
               </tr>
 
               <tr>
@@ -97,7 +97,7 @@
 
               <tr>
                 <th>Opening balance:</th>
-                <td colspan="2"><%= @party.phone %></td>
+                <td colspan="2"><%= number_to_currency(@party.opening_balance) if @party.opening_balance %></td>
               </tr>
 
               <tr>

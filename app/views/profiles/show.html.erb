@@ -1,0 +1,58 @@
+<% content_for :title, "My Profile" %>
+
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div class="page-pretitle">Account</div>
+        <h2 class="page-title">My Profile</h2>
+      </div>
+      <div class="col-auto ms-auto d-print-none">
+        <%= link_to "Edit profile", edit_profile_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="container-xl">
+    <div class="row row-cards">
+
+      <p style="color: green"><%= notice %></p>
+
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-4">
+              <span class="avatar avatar-lg bg-primary-lt me-3"><%= (@user.name.presence || @user.email).first.upcase %></span>
+              <div>
+                <div class="h3 mb-0"><%= @user.name.presence || @user.email %></div>
+                <div class="text-secondary"><%= @user.email %></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table card-table table-vcenter text-nowrap">
+              <tbody>
+              <tr>
+                <th>Name:</th>
+                <td colspan="2"><%= @user.name %></td>
+              </tr>
+              <tr>
+                <th>Email:</th>
+                <td colspan="2"><%= @user.email %></td>
+              </tr>
+              <tr>
+                <th>Joined:</th>
+                <td colspan="2"><%= @user.created_at.strftime("%d %b %Y, %I:%M %p") %></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

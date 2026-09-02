@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.all
+    @products = Product.order(created_at: :desc)
   end
 
   # GET /products/1 or /products/1.json
@@ -65,6 +65,11 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:title, :description)
+      params.require(:product).permit(
+        :name, :description, :content, :sku, :barcode, :image, :brand_id,
+        :price, :sale_price, :cost_per_item,
+        :quantity, :with_storehouse_management, :allow_checkout_when_out_of_stock, :stock_status,
+        :is_featured, :order, :status
+      )
     end
 end

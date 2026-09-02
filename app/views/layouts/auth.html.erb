@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title><%= content_for(:title) || "Sign in" %> · Testapp</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8"/>
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/icon.png" type="image/png">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icon.png">
+
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+
+  <style>
+      @import url('https://rsms.me/inter/inter.css');
+
+      :root {
+          --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+      }
+
+      body {
+          font-feature-settings: "cv03", "cv04", "cv11";
+      }
+  </style>
+</head>
+<body class="border-top-wide border-primary d-flex flex-column">
+<div class="page page-center">
+  <div class="container container-tight py-4">
+    <%= yield %>
+  </div>
+</div>
+</body>
+</html>

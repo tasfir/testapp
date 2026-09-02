@@ -1,0 +1,96 @@
+<% content_for :title, "Users" %>
+
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div class="page-pretitle">Settings</div>
+        <h2 class="page-title">Users</h2>
+      </div>
+
+      <div class="col-auto ms-auto d-print-none">
+        <div class="btn-list">
+          <%= link_to new_user_path, class: "btn btn-primary d-none d-sm-inline-block" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M12 5l0 14"/>
+              <path d="M5 12l14 0"/>
+            </svg>
+            New user
+          <% end %>
+
+          <%= link_to new_user_path, class: "btn btn-primary d-sm-none btn-icon", aria: { label: "New user" } do %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M12 5l0 14"/>
+              <path d="M5 12l14 0"/>
+            </svg>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="container-xl">
+    <div class="row row-cards">
+
+      <p style="color: green"><%= notice %></p>
+      <p style="color: red"><%= alert %></p>
+
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Users</h3>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table card-table table-vcenter text-nowrap">
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Joined</th>
+                <th class="w-1"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @users.each do |user| %>
+                <tr>
+                  <td>
+                    <span class="avatar avatar-xs bg-primary-lt me-2"><%= (user.name.presence || user.email).first.upcase %></span>
+                    <%= link_to user.name.presence || user.email, user %>
+                    <% if user == current_user %>
+                      <span class="badge bg-blue-lt ms-2">You</span>
+                    <% end %>
+                  </td>
+                  <td><%= user.email %></td>
+                  <td><%= user.created_at.strftime("%d %b %Y") %></td>
+                  <td class="text-end">
+                    <div class="dropdown">
+                      <%= button_tag "Actions", class: "btn dropdown-toggle align-text-bottom",
+                                     data: { bs_boundary: "viewport", bs_toggle: "dropdown" },
+                                     aria: { expanded: false } %>
+                      <ul class="dropdown-menu dropdown-menu-end">
+                        <li><%= link_to "View", user_path(user), class: "dropdown-item" %></li>
+                        <li><%= link_to "Edit", edit_user_path(user), class: "dropdown-item" %></li>
+                        <% unless user == current_user %>
+                          <li>
+                            <%= link_to "Delete", user_path(user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "dropdown-item text-danger" %>
+                          </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,10 +1,122 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, @product.name %>
 
-<%= render @product %>
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div class="page-pretitle">Products</div>
+        <h2 class="page-title"><%= @product.name %></h2>
+      </div>
+      <div class="col-auto ms-auto d-print-none">
+        <div class="btn-list">
+          <%= link_to "Edit", edit_product_path(@product), class: "btn btn-primary" %>
+          <%= button_to "Delete", @product, method: :delete, class: "btn btn-outline-danger", form: { data: { turbo_confirm: "Are you sure?" } } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<div>
-  <%= link_to "Edit this product", edit_product_path(@product) %> |
-  <%= link_to "Back to products", products_path %>
+<div class="page-body">
+  <div class="container-xl">
+    <div class="row row-cards">
 
-  <%= button_to "Destroy this product", @product, method: :delete %>
+      <p style="color: green"><%= notice %></p>
+
+      <div class="col-12">
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table card-table table-vcenter text-nowrap">
+              <tbody>
+              <tr>
+                <th>Name:</th>
+                <td colspan="2"><%= @product.name %></td>
+              </tr>
+              <tr>
+                <th>SKU:</th>
+                <td colspan="2"><%= @product.sku %></td>
+              </tr>
+              <tr>
+                <th>Brand:</th>
+                <td colspan="2"><%= @product.brand ? link_to(@product.brand.name, @product.brand) : "—" %></td>
+              </tr>
+              <tr>
+                <th>Description:</th>
+                <td colspan="2"><%= @product.description %></td>
+              </tr>
+              <tr>
+                <th>Content:</th>
+                <td colspan="2"><%= simple_format(@product.content) if @product.content.present? %></td>
+              </tr>
+              <tr>
+                <th>Price:</th>
+                <td colspan="2"><%= number_to_currency(@product.price) if @product.price %></td>
+              </tr>
+              <tr>
+                <th>Sale price:</th>
+                <td colspan="2"><%= number_to_currency(@product.sale_price) if @product.sale_price %></td>
+              </tr>
+              <tr>
+                <th>Cost per item:</th>
+                <td colspan="2"><%= number_to_currency(@product.cost_per_item) if @product.cost_per_item %></td>
+              </tr>
+              <tr>
+                <th>Quantity:</th>
+                <td colspan="2"><%= @product.quantity %></td>
+              </tr>
+              <tr>
+                <th>Stock status:</th>
+                <td colspan="2">
+                  <span class="badge <%= @product.stock_status == 'in_stock' ? 'bg-green-lt' : 'bg-red-lt' %>">
+                    <%= @product.stock_status&.titleize %>
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <th>Track stock quantity:</th>
+                <td colspan="2"><%= @product.with_storehouse_management? ? "Yes" : "No" %></td>
+              </tr>
+              <tr>
+                <th>Allow checkout when out of stock:</th>
+                <td colspan="2"><%= @product.allow_checkout_when_out_of_stock? ? "Yes" : "No" %></td>
+              </tr>
+              <tr>
+                <th>Barcode:</th>
+                <td colspan="2"><%= @product.barcode %></td>
+              </tr>
+              <tr>
+                <th>Featured:</th>
+                <td colspan="2"><%= @product.is_featured? ? "Yes" : "No" %></td>
+              </tr>
+              <tr>
+                <th>Sort order:</th>
+                <td colspan="2"><%= @product.order %></td>
+              </tr>
+              <tr>
+                <th>Status:</th>
+                <td colspan="2">
+                  <span class="badge <%= @product.status == Statusable::STATUS_PUBLISHED ? 'bg-green-lt' : 'bg-secondary-lt' %>">
+                    <%= @product.status %>
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <th>Created at:</th>
+                <td colspan="2"><%= @product.created_at.strftime("%d %b %Y, %I:%M %p") %></td>
+              </tr>
+              </tbody>
+              <tfoot>
+              <tr>
+                <td><%= link_to "Back to products", products_path %></td>
+                <td><%= link_to "Edit this product", edit_product_path(@product) %></td>
+                <td><%= button_to "Destroy this product", @product, method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %></td>
+              </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>

@@ -13,60 +13,41 @@ class PartiesController < ApplicationController
   # GET /parties/new
   def new
     @party = Party.new
-
-    # Fetch divisions with translations in 'en'
-    @districts = District.joins(:translations)
-                         .where(translations: { locale: "bn", key: "name" })
-                         .select("districts.*, translations.value as name")
-    @thanas = []
+    load_district_and_thana_options
   end
-
 
   # POST /parties
   def create
+    district = District.find_by(id: params[:party][:district_id])
+    @party = Party.new(party_params.merge(division_id: district&.division_id))
 
-    # Fetch the district using the provided district_id
-    district = District.find(params[:party][:district_id])
-
-    # If the district is found, get the thana_id
-    division_id = district.division_id if district
-
-    # Create the party with the thana_id
-    @party = Party.new(party_params.merge(division_id: division_id))
-
-    # @party = Party.new(party_params)
     if @party.save
       redirect_to @party, notice: "Party was successfully created."
     else
-      # Fetch divisions with translations in 'en'
-      @divisions = Division.joins(:translations)
-                           .where(translations: { locale: "bn", key: "name" })
-                           .select("divisions.*, translations.value as name")
-
-      render :new
+      load_district_and_thana_options
+      render :new, status: :unprocessable_entity
     end
   end
 
   # GET /parties/:id/edit
   def edit
-    # Fetch divisions with translations in 'en'
-    @districts = District.joins(:translations)
-                         .where(translations: { locale: "bn", key: "name" })
-                         .select("districts.*, translations.value as name")
-
-    @thanas = Thana.joins(:translations)
-                         .where(district_id: @party.district_id)
-                         .where(translations: { locale: "bn", key: "name" })
-                         .select("thanas.*, translations.value as name")
-
+    load_district_and_thana_options(@party.district_id)
   end
 
   # PATCH/PUT /parties/:id
   def update
-    if @party.update(party_params)
+    attrs = party_params
+
+    if params[:party][:district_id].present?
+      district = District.find_by(id: params[:party][:district_id])
+      attrs = attrs.merge(division_id: district.division_id) if district
+    end
+
+    if @party.update(attrs)
       redirect_to @party, notice: "Party was successfully updated."
     else
-      render :edit
+      load_district_and_thana_options(@party.district_id)
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -85,6 +66,22 @@ class PartiesController < ApplicationController
 
   # Only allow a list of trusted parameters through
   def party_params
-    params.require(:party).permit(:division_id, :district_id, :thana_id, :name, :proprietor, :address, :phone, :email, :website, :opening_balance, :remarks, :status)
+    params.require(:party).permit(:district_id, :thana_id, :name, :proprietor, :address, :phone, :email, :website, :opening_balance, :remarks, :status)
+  end
+
+  # Load districts (all) and thanas (scoped to a district, if given) with 'bn' translated names for the form selects
+  def load_district_and_thana_options(district_id = nil)
+    @districts = District.joins(:translations)
+                          .where(translations: { locale: "bn", key: "name" })
+                          .select("districts.*, translations.value as name")
+
+    @thanas = if district_id.present?
+      Thana.joins(:translations)
+           .where(district_id: district_id)
+           .where(translations: { locale: "bn", key: "name" })
+           .select("thanas.*, translations.value as name")
+    else
+      []
+    end
   end
 end

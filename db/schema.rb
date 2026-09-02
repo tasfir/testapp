@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_27_183014) do
+ActiveRecord::Schema[7.2].define(version: 2026_09_02_145218) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "brands", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "status", default: "published", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_brands_on_name", unique: true
+  end
 
   create_table "districts", force: :cascade do |t|
     t.bigint "division_id", null: false
@@ -28,9 +36,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_27_183014) do
     t.string "code", null: false
     t.float "lat"
     t.float "long"
-    t.string "status", default: "published", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "published", null: false
     t.index ["code"], name: "index_divisions_on_code", unique: true
   end
 
@@ -139,8 +147,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_27_183014) do
     t.index ["translatable_type", "translatable_id"], name: "index_translations_on_translatable"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
   add_foreign_key "districts", "divisions"
   add_foreign_key "parties", "districts"
   add_foreign_key "parties", "divisions"
   add_foreign_key "parties", "thanas"
+  add_foreign_key "products", "brands"
 end

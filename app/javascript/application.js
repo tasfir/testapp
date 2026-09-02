@@ -3,5 +3,6 @@ import "@hotwired/turbo-rails"
 import "./controllers"
 import "./dependent/districts";
 import "./dependent/thana";
+import "./dependent/dropdown_positioning";
 import "./tabler/tabler";
 

@@ -1,0 +1,32 @@
+<% content_for :title, @feature %>
+
+<div class="page-body">
+  <div class="container-xl">
+    <div class="empty">
+      <div class="empty-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="64" height="64" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <path d="M12 7v5l3 3"/>
+          <path d="M12 3c-4.97 0 -9 4.03 -9 9s4.03 9 9 9s9 -4.03 9 -9c0 -1.55 -.39 -3.01 -1.08 -4.28"/>
+          <path d="M18 3v4h4"/>
+          <path d="M18 3l-4.35 4.35"/>
+        </svg>
+      </div>
+      <p class="empty-title"><%= @feature %></p>
+      <p class="empty-subtitle text-secondary">
+        This section is coming soon. We're still building it out.
+      </p>
+      <div class="empty-action">
+        <%= link_to root_path, class: "btn btn-primary" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M5 12l14 0"/>
+            <path d="M5 12l6 6"/>
+            <path d="M5 12l6 -6"/>
+          </svg>
+          Back to dashboard
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

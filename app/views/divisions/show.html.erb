@@ -1,0 +1,62 @@
+<% content_for :title, @division.name %>
+
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div class="page-pretitle">Divisions</div>
+        <h2 class="page-title"><%= @division.name %></h2>
+      </div>
+      <div class="col-auto ms-auto d-print-none">
+        <%= link_to "Back to divisions", divisions_path, class: "btn" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="container-xl">
+    <div class="row row-cards">
+
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Districts in <%= @division.name %></h3>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table card-table table-vcenter text-nowrap">
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Thanas</th>
+                <th>Status</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% if @districts.any? %>
+                <% @districts.each do |district| %>
+                  <tr>
+                    <td><%= district.name %></td>
+                    <td><%= Thana.where(district_id: district.id).count %></td>
+                    <td>
+                      <span class="badge <%= district.status == Statusable::STATUS_PUBLISHED ? 'bg-green-lt' : 'bg-secondary-lt' %>">
+                        <%= district.status %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+              <% else %>
+                <tr>
+                  <td colspan="3" class="text-center text-secondary py-4">No districts found for this division.</td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

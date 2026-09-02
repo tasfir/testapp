@@ -1,0 +1,59 @@
+<% content_for :title, "Divisions & Districts" %>
+
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div class="page-pretitle">Settings</div>
+        <h2 class="page-title">Divisions &amp; Districts</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="container-xl">
+    <div class="row row-cards">
+
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Divisions</h3>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table card-table table-vcenter text-nowrap">
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Districts</th>
+                <th>Status</th>
+                <th class="w-1"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @divisions.each do |division| %>
+                <tr>
+                  <td><%= link_to division.name, division %></td>
+                  <td><span class="text-secondary"><%= division.code %></span></td>
+                  <td><%= District.where(division_id: division.id).count %></td>
+                  <td>
+                    <span class="badge <%= division.status == Statusable::STATUS_PUBLISHED ? 'bg-green-lt' : 'bg-secondary-lt' %>">
+                      <%= division.status %>
+                    </span>
+                  </td>
+                  <td class="text-end">
+                    <%= link_to "View districts", division_path(division), class: "btn btn-outline-primary btn-sm" %>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

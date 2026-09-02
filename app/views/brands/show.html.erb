@@ -1,0 +1,94 @@
+<% content_for :title, @brand.name %>
+
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div class="page-pretitle">Brands</div>
+        <h2 class="page-title"><%= @brand.name %></h2>
+      </div>
+      <div class="col-auto ms-auto d-print-none">
+        <div class="btn-list">
+          <%= link_to "Edit", edit_brand_path(@brand), class: "btn btn-primary" %>
+          <%= button_to "Delete", @brand, method: :delete, class: "btn btn-outline-danger", form: { data: { turbo_confirm: "Are you sure?" } } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="container-xl">
+    <div class="row row-cards">
+
+      <p style="color: green"><%= notice %></p>
+
+      <div class="col-12">
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table card-table table-vcenter text-nowrap">
+              <tbody>
+              <tr>
+                <th>Name:</th>
+                <td colspan="2"><%= @brand.name %></td>
+              </tr>
+              <tr>
+                <th>Status:</th>
+                <td colspan="2">
+                  <span class="badge <%= @brand.status == 'published' ? 'bg-green-lt' : 'bg-secondary-lt' %>">
+                    <%= @brand.status %>
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <th>Products:</th>
+                <td colspan="2"><%= @brand.products.count %></td>
+              </tr>
+              </tbody>
+              <tfoot>
+              <tr>
+                <td><%= link_to "Back to brands", brands_path %></td>
+                <td><%= link_to "Edit this brand", edit_brand_path(@brand) %></td>
+                <td><%= button_to "Destroy this brand", @brand, method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %></td>
+              </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <% if @brand.products.any? %>
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Products under this brand</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="table card-table table-vcenter text-nowrap">
+                <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>SKU</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @brand.products.each do |product| %>
+                  <tr>
+                    <td><%= link_to product.name, product %></td>
+                    <td><%= product.sku %></td>
+                    <td><%= number_to_currency(product.price) if product.price %></td>
+                    <td><%= product.quantity %></td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
