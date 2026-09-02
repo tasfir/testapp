@@ -78,8 +78,8 @@ GEM
     bcrypt (3.1.22)
     bigdecimal (3.1.8)
     bindex (0.8.1)
-    bootsnap (1.18.4)
-      msgpack (~> 1.2)
+    bootsnap (1.25.0)
+      msgpack (~> 1.5)
     brakeman (6.2.1)
       racc
     builder (3.3.0)
@@ -137,7 +137,7 @@ GEM
     matrix (0.4.2)
     mini_mime (1.1.5)
     minitest (5.25.1)
-    msgpack (1.7.2)
+    msgpack (1.8.4)
     net-imap (0.4.16)
       date
       net-protocol
